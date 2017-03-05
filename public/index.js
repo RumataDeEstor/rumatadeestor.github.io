@@ -4,15 +4,15 @@ import HeroesList from './HeroesList';
 import provider from './GlobalProvider.js';
 
 // test
-provider.createHero({ name: 'Edrard', hunger: 100, avatar: './img/avatar0.png' });
+provider.createHero({ name: 'Edrard', hunger: 100, avatar: 'public/img/avatar0.png' });
 
-provider.createHero({ name: 'Mihael', hunger: 150, avatar: './img/avatar1.png' });
+provider.createHero({ name: 'Mihael', hunger: 150, avatar: 'public/img/avatar1.png' });
 
-provider.createHero({ name: 'Alonzo', hunger: 200, avatar: './img/avatar2.png' });
+provider.createHero({ name: 'Alonzo', hunger: 200, avatar: 'public/img/avatar2.png' });
 
-provider.createHero({ name: 'Volodar', hunger: 175, avatar: './img/avatar3.png' });
+provider.createHero({ name: 'Volodar', hunger: 175, avatar: 'public/img/avatar3.png' });
 
-provider.createHero({ name: 'Vovarian', hunger: 98, avatar: './img/avatar4.png' });
+provider.createHero({ name: 'Vovarian', hunger: 98, avatar: 'public/img/avatar4.png' });
 
 console.log('All existent heroes', provider.heroes.all);
 

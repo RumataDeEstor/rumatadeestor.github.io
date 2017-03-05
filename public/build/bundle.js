@@ -71,15 +71,15 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// test
-	_GlobalProvider2.default.createHero({ name: 'Edrard', hunger: 100, avatar: './img/avatar0.png' });
+	_GlobalProvider2.default.createHero({ name: 'Edrard', hunger: 100, avatar: 'public/img/avatar0.png' });
 
-	_GlobalProvider2.default.createHero({ name: 'Mihael', hunger: 150, avatar: './img/avatar1.png' });
+	_GlobalProvider2.default.createHero({ name: 'Mihael', hunger: 150, avatar: 'public/img/avatar1.png' });
 
-	_GlobalProvider2.default.createHero({ name: 'Alonzo', hunger: 200, avatar: './img/avatar2.png' });
+	_GlobalProvider2.default.createHero({ name: 'Alonzo', hunger: 200, avatar: 'public/img/avatar2.png' });
 
-	_GlobalProvider2.default.createHero({ name: 'Volodar', hunger: 175, avatar: './img/avatar3.png' });
+	_GlobalProvider2.default.createHero({ name: 'Volodar', hunger: 175, avatar: 'public/img/avatar3.png' });
 
-	_GlobalProvider2.default.createHero({ name: 'Vovarian', hunger: 98, avatar: './img/avatar4.png' });
+	_GlobalProvider2.default.createHero({ name: 'Vovarian', hunger: 98, avatar: 'public/img/avatar4.png' });
 
 	console.log('All existent heroes', _GlobalProvider2.default.heroes.all);
 
