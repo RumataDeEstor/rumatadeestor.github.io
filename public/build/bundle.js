@@ -77,11 +77,11 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	function getRandomName() {
-	  return _heroes2.default.names[(0, _helpers.getRandomInt)(0, _heroes2.default.names.length)];
+	  return _heroes2.default.names[(0, _helpers.getRandomInt)(0, _heroes2.default.names.length - 1)];
 	}
 
 	function getRandomAvatar() {
-	  return _heroes2.default.avatars[(0, _helpers.getRandomInt)(0, _heroes2.default.avatars.length)];
+	  return _heroes2.default.avatars[(0, _helpers.getRandomInt)(0, _heroes2.default.avatars.length - 1)];
 	}
 
 	// test
@@ -89,7 +89,7 @@
 	for (var i = 0; i < 15; i++) {
 	  _GlobalProvider2.default.createHero({
 	    name: getRandomName(),
-	    hunger: (0, _helpers.getRandomInt)(70, 201),
+	    hunger: (0, _helpers.getRandomInt)(70, 200),
 	    avatar: getRandomAvatar()
 	  });
 	}

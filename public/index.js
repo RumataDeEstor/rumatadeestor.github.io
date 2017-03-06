@@ -6,11 +6,11 @@ import { getRandomInt } from './helpers';
 import heroes from './heroes.json';
 
 function getRandomName() {
-  return heroes.names[getRandomInt(0, heroes.names.length)];
+  return heroes.names[getRandomInt(0, heroes.names.length - 1)];
 }
 
 function getRandomAvatar() {
-  return heroes.avatars[getRandomInt(0, heroes.avatars.length)];
+  return heroes.avatars[getRandomInt(0, heroes.avatars.length - 1)];
 }
 
 // test
@@ -18,7 +18,7 @@ function getRandomAvatar() {
 for (let i=0; i<15; i++) {
   provider.createHero({
     name: getRandomName(),
-    hunger: getRandomInt(70, 201),
+    hunger: getRandomInt(70, 200),
     avatar: getRandomAvatar()
   });
 }
