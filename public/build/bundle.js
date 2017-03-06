@@ -62,6 +62,12 @@
 
 	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
 
+	var _helpers = __webpack_require__(181);
+
+	var _heroes = __webpack_require__(183);
+
+	var _heroes2 = _interopRequireDefault(_heroes);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70,16 +76,23 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	function getRandomName() {
+	  return _heroes2.default.names[(0, _helpers.getRandomInt)(0, _heroes2.default.names.length)];
+	}
+
+	function getRandomAvatar() {
+	  return _heroes2.default.avatars[(0, _helpers.getRandomInt)(0, _heroes2.default.avatars.length)];
+	}
+
 	// test
-	_GlobalProvider2.default.createHero({ name: 'Edrard', hunger: 100, avatar: 'public/img/avatar0.png' });
 
-	_GlobalProvider2.default.createHero({ name: 'Mihael', hunger: 150, avatar: 'public/img/avatar1.png' });
-
-	_GlobalProvider2.default.createHero({ name: 'Alonzo', hunger: 200, avatar: 'public/img/avatar2.png' });
-
-	_GlobalProvider2.default.createHero({ name: 'Volodar', hunger: 175, avatar: 'public/img/avatar3.png' });
-
-	_GlobalProvider2.default.createHero({ name: 'Vovarian', hunger: 98, avatar: 'public/img/avatar4.png' });
+	for (var i = 0; i < 15; i++) {
+	  _GlobalProvider2.default.createHero({
+	    name: getRandomName(),
+	    hunger: (0, _helpers.getRandomInt)(70, 201),
+	    avatar: getRandomAvatar()
+	  });
+	}
 
 	console.log('All existent heroes', _GlobalProvider2.default.heroes.all);
 
@@ -21847,6 +21860,7 @@
 	});
 	exports.listHelper = listHelper;
 	exports.getId = getId;
+	exports.getRandomInt = getRandomInt;
 	function listHelper(obj) {
 	  var list = Object.keys(obj).filter(function (key) {
 	    return key != 'list';
@@ -21864,6 +21878,12 @@
 	    return id++;
 	  };
 	};
+
+	function getRandomInt(min, max) {
+	  var rand = min + Math.random() * (max + 1 - min);
+	  rand = Math.floor(rand);
+	  return rand;
+	}
 
 /***/ },
 /* 182 */
@@ -21907,6 +21927,40 @@
 	}();
 
 	exports.default = Hero;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"names": [
+			"Edrard",
+			"Volodar",
+			"Vovarian",
+			"Mihael",
+			"Alonzo",
+			"Aleo",
+			"Morodar",
+			"Saho",
+			"Paolo",
+			"Breno",
+			"Pithoni",
+			"Teodoro",
+			"Veroni",
+			"Gekon",
+			"Yulius",
+			"Bruno",
+			"Arthur",
+			"Merlin"
+		],
+		"avatars": [
+			"public/img/avatar0.png",
+			"public/img/avatar1.png",
+			"public/img/avatar2.png",
+			"public/img/avatar3.png",
+			"public/img/avatar4.png"
+		]
+	};
 
 /***/ }
 /******/ ]);

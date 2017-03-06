@@ -2,17 +2,26 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import HeroesList from './HeroesList';
 import provider from './GlobalProvider.js';
+import { getRandomInt } from './helpers';
+import heroes from './heroes.json';
+
+function getRandomName() {
+  return heroes.names[getRandomInt(0, heroes.names.length)];
+}
+
+function getRandomAvatar() {
+  return heroes.avatars[getRandomInt(0, heroes.avatars.length)];
+}
 
 // test
-provider.createHero({ name: 'Edrard', hunger: 100, avatar: 'public/img/avatar0.png' });
 
-provider.createHero({ name: 'Mihael', hunger: 150, avatar: 'public/img/avatar1.png' });
-
-provider.createHero({ name: 'Alonzo', hunger: 200, avatar: 'public/img/avatar2.png' });
-
-provider.createHero({ name: 'Volodar', hunger: 175, avatar: 'public/img/avatar3.png' });
-
-provider.createHero({ name: 'Vovarian', hunger: 98, avatar: 'public/img/avatar4.png' });
+for (let i=0; i<15; i++) {
+  provider.createHero({
+    name: getRandomName(),
+    hunger: getRandomInt(70, 201),
+    avatar: getRandomAvatar()
+  });
+}
 
 console.log('All existent heroes', provider.heroes.all);
 
