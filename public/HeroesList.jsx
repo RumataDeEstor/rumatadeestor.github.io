@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import HeroItem from './HeroItem';
 import provider from './GlobalProvider.js';
 
@@ -8,6 +7,8 @@ export default class HeroesList extends Component {
     super(props);
   }
   render() {
+    const isListOfVacant = (this.props.section === 'vacant');
+
     return (
       <div className="heroes-list">
         {
@@ -19,17 +20,16 @@ export default class HeroesList extends Component {
                 name={el.name}
                 hunger={el.hunger}
                 avatar={el.avatar}
-                canHire={this.props.canHire}
-                hireButtonClick={(id) => {
-                  provider.hireHero(id);
-                  console.log('hired', id);
-                  console.log('all hired:  ', provider.heroes.hired);
-                }}
+                hireButtonIsNeeded={isListOfVacant}
+                hireHero={this.props.hireHero}
               />
             );
           })
         }
-        <button onClick={() => provider.feedHeroes()}>Feed all hired heroes</button>
+        <div className="temp-btns" style={{ display: isListOfVacant ? 'none' : 'block'}}>
+          <button onClick={() => provider.forceDayFinish()}>Force day finish</button>
+          <button onClick={() => this.props.hireNewHero()}>Hire new hero</button>
+        </div>
       </div>
     );
   }

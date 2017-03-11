@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 
-export default class HeroItem extends React.Component {
+const HireButton = ({ hireHero }) => (
+  <div className="heroes-list__hire-button-container">
+    <button className="heroes-list__hire-button"
+      onClick={hireHero}
+    >
+      HIRE
+    </button>
+  </div>
+);
+
+export default class HeroItem extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
-    const { name, id, hunger, avatar, canHire, hireButtonClick } = this.props;
-    const HireButton = () => (
-      <button onClick={() => hireButtonClick(id)}> Hire </button>
-    );
+    const { name, id, hunger, avatar, hireButtonIsNeeded, hireHero } = this.props;
+
     return (
       <div className="heroes-list__item">
         <img src={avatar} className="heroes-list__pic"/>
         <span> {name} </span>
         <span> {hunger} </span>
-        { canHire ? <HireButton /> : null}
+        { hireButtonIsNeeded ? <HireButton hireHero={() => hireHero(id)}/> : null}
       </div>
-    )
+    );
   }
 }

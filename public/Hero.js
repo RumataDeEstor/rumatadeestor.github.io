@@ -6,10 +6,10 @@ export default class Hero {
     this.hunger = hunger;
     this.avatar = avatar;
   }
-  
+
   eating() {
     if (!this.hunger) return;
-    console.info(`${this.name} ate ${this.hunger} points`);
+    console.info(`%c${this.name} ate ${this.hunger} points`, 'font-size: 16px; color: blue');
     return true;
   }
 }
