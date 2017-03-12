@@ -25,7 +25,7 @@ class GlobalProvider {    // must be singleton
 
   foodSupply(dif) {
     if (dif) this._foodSupply += dif;
-    console.info(`%ccurrent foodSupply: ${this._foodSupply}`, 'font-size: 16px; color: blue');
+    // console.info(`%ccurrent foodSupply: ${this._foodSupply}`, 'font-size: 16px; color: blue');
     return this._foodSupply;
   }
 

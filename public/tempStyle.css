@@ -25,3 +25,10 @@
   height: 30rem;
   background-color: white;
 }
+
+.resources-panel {
+  width: 100vw;
+  height: 1.5rem;
+  background-color: black;
+  color: white;
+}

@@ -3,6 +3,8 @@ import HeroesList from '../../HeroesList';
 import { activateModal } from '../modals/actions';
 import { hireHero } from './actions';
 import provider from '../../GlobalProvider';
+import { changeFood } from '../resources/actions';
+import { syncUpdate } from '../sync/actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -21,7 +23,17 @@ const mapDispatchToProps = dispatch => ({
   hireHero: (id) => {
     provider.hireHero(id); // FIXME
     dispatch(hireHero(id));
-  }
+  },
+  forceDayFinish: () => {
+    provider.forceDayFinish();
+    // dispatch(changeFood());
+    dispatch(syncUpdate());
+    /* 
+      TODO: now I can use something like this, it must be automated later.
+      Most likely, we should create separate sync for different domains (heroes, res, etc.)
+      Or maybe not, we will see :)
+    */
+  },
 });
 
 const HeroesListContainer = connect(

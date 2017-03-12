@@ -5,6 +5,7 @@ import HeroesListContainer from './containers/heroes/HeroesListContainer';
 import provider from './GlobalProvider.js';
 import configureStore from './configureStore';
 import HireHeroModal from './containers/modals/HireHeroContainer';
+import PanelContainer from './containers/resources/PanelContainer';
 
 const store = configureStore();
 
@@ -22,8 +23,9 @@ class Root extends Component {
             For now you can hire hero and feed all heroes.
             Use your console to get some info.
           </h2>
+          <PanelContainer />
           <HeroesListContainer section='hired'/>
-          <HireHeroModal />
+          <HireHeroModal />          
         </div>
       </Provider>
     );

@@ -27,7 +27,7 @@ export default class HeroesList extends Component {
           })
         }
         <div className="temp-btns" style={{ display: isListOfVacant ? 'none' : 'block'}}>
-          <button onClick={() => provider.forceDayFinish()}>Force day finish</button>
+          <button onClick={() => this.props.forceDayFinish()}>Force day finish</button>
           <button onClick={() => this.props.hireNewHero()}>Hire new hero</button>
         </div>
       </div>

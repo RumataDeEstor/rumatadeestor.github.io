@@ -64,13 +64,17 @@
 
 	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
 
-	var _configureStore = __webpack_require__(225);
+	var _configureStore = __webpack_require__(227);
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
-	var _HireHeroContainer = __webpack_require__(236);
+	var _HireHeroContainer = __webpack_require__(240);
 
 	var _HireHeroContainer2 = _interopRequireDefault(_HireHeroContainer);
+
+	var _PanelContainer = __webpack_require__(242);
+
+	var _PanelContainer2 = _interopRequireDefault(_PanelContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -112,6 +116,7 @@
 	            null,
 	            'For now you can hire hero and feed all heroes. Use your console to get some info.'
 	          ),
+	          _react2.default.createElement(_PanelContainer2.default, null),
 	          _react2.default.createElement(_HeroesListContainer2.default, { section: 'hired' }),
 	          _react2.default.createElement(_HireHeroContainer2.default, null)
 	        )
@@ -23838,6 +23843,10 @@
 
 	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
 
+	var _actions3 = __webpack_require__(225);
+
+	var _actions4 = __webpack_require__(226);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
@@ -23854,6 +23863,11 @@
 	    hireHero: function hireHero(id) {
 	      _GlobalProvider2.default.hireHero(id); // FIXME
 	      dispatch((0, _actions2.hireHero)(id));
+	    },
+	    forceDayFinish: function forceDayFinish() {
+	      _GlobalProvider2.default.forceDayFinish();
+	      // dispatch(changeFood());
+	      dispatch((0, _actions4.syncUpdate)());
 	    }
 	  };
 	};
@@ -23930,7 +23944,7 @@
 	          _react2.default.createElement(
 	            'button',
 	            { onClick: function onClick() {
-	                return _GlobalProvider2.default.forceDayFinish();
+	                return _this2.props.forceDayFinish();
 	              } },
 	            'Force day finish'
 	          ),
@@ -24102,7 +24116,7 @@
 	    key: 'foodSupply',
 	    value: function foodSupply(dif) {
 	      if (dif) this._foodSupply += dif;
-	      console.info('%ccurrent foodSupply: ' + this._foodSupply, 'font-size: 16px; color: blue');
+	      // console.info(`%ccurrent foodSupply: ${this._foodSupply}`, 'font-size: 16px; color: blue');
 	      return this._foodSupply;
 	    }
 	  }, {
@@ -24390,15 +24404,61 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.CHANGE_FOOD = undefined;
+	exports.changeFood = changeFood;
+
+	var _GlobalProvider = __webpack_require__(219);
+
+	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CHANGE_FOOD = exports.CHANGE_FOOD = 'CHANGE_FOOD';
+
+	function changeFood() {
+	  return {
+	    type: CHANGE_FOOD,
+	    food: _GlobalProvider2.default.foodSupply()
+	  };
+	}
+
+/***/ },
+/* 226 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.syncUpdate = syncUpdate;
+	var SYNC_UPDATE = exports.SYNC_UPDATE = 'SYNC_UPDATE';
+
+	function syncUpdate(id) {
+	  return {
+	    type: SYNC_UPDATE,
+	    time: Date.now()
+	  };
+	}
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = configureStore;
 
-	var _reduxLogger = __webpack_require__(226);
+	var _reduxLogger = __webpack_require__(228);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
 	var _redux = __webpack_require__(189);
 
-	var _reducers = __webpack_require__(232);
+	var _reducers = __webpack_require__(234);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24411,7 +24471,7 @@
 	}
 
 /***/ },
-/* 226 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24422,11 +24482,11 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _core = __webpack_require__(227);
+	var _core = __webpack_require__(229);
 
-	var _helpers = __webpack_require__(228);
+	var _helpers = __webpack_require__(230);
 
-	var _defaults = __webpack_require__(231);
+	var _defaults = __webpack_require__(233);
 
 	var _defaults2 = _interopRequireDefault(_defaults);
 
@@ -24543,7 +24603,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24556,9 +24616,9 @@
 
 	exports.printBuffer = printBuffer;
 
-	var _helpers = __webpack_require__(228);
+	var _helpers = __webpack_require__(230);
 
-	var _diff = __webpack_require__(229);
+	var _diff = __webpack_require__(231);
 
 	var _diff2 = _interopRequireDefault(_diff);
 
@@ -24685,7 +24745,7 @@
 	}
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -24709,7 +24769,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 229 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24719,7 +24779,7 @@
 	});
 	exports.default = diffLogger;
 
-	var _deepDiff = __webpack_require__(230);
+	var _deepDiff = __webpack_require__(232);
 
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 
@@ -24808,7 +24868,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -25237,7 +25297,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 231 */
+/* 233 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25288,7 +25348,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 232 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25299,13 +25359,21 @@
 
 	var _redux = __webpack_require__(189);
 
-	var _reducer = __webpack_require__(233);
+	var _reducer = __webpack_require__(235);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _reducer3 = __webpack_require__(235);
+	var _reducer3 = __webpack_require__(237);
 
 	var _reducer4 = _interopRequireDefault(_reducer3);
+
+	var _reducer5 = __webpack_require__(238);
+
+	var _reducer6 = _interopRequireDefault(_reducer5);
+
+	var _reducer7 = __webpack_require__(239);
+
+	var _reducer8 = _interopRequireDefault(_reducer7);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25317,13 +25385,15 @@
 	// import entityData from './containers/entities/EntityDataReducer';
 	var rootReducer = (0, _redux.combineReducers)({
 	  modals: _reducer2.default,
-	  heroes: _reducer4.default
+	  heroes: _reducer4.default,
+	  resources: _reducer6.default,
+	  sync: _reducer8.default
 	});
 
 	exports.default = rootReducer;
 
 /***/ },
-/* 233 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25336,7 +25406,7 @@
 
 	var _actions = __webpack_require__(223);
 
-	var _reduxUtils = __webpack_require__(234);
+	var _reduxUtils = __webpack_require__(236);
 
 	var _reduxUtils2 = _interopRequireDefault(_reduxUtils);
 
@@ -25365,7 +25435,7 @@
 	exports.default = modals;
 
 /***/ },
-/* 234 */
+/* 236 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25387,7 +25457,7 @@
 	}
 
 /***/ },
-/* 235 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25398,7 +25468,7 @@
 
 	var _actions = __webpack_require__(224);
 
-	var _reduxUtils = __webpack_require__(234);
+	var _reduxUtils = __webpack_require__(236);
 
 	var _reduxUtils2 = _interopRequireDefault(_reduxUtils);
 
@@ -25425,7 +25495,74 @@
 	exports.default = heroes;
 
 /***/ },
-/* 236 */
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _actions = __webpack_require__(225);
+
+	var _reduxUtils = __webpack_require__(236);
+
+	var _reduxUtils2 = _interopRequireDefault(_reduxUtils);
+
+	var _GlobalProvider = __webpack_require__(219);
+
+	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var initialResourcesState = {
+	  food: _GlobalProvider2.default.foodSupply() };
+
+	// FIXME: to check, maybe it is reduntant
+	var resources = (0, _reduxUtils2.default)(initialResourcesState, _defineProperty({}, _actions.CHANGE_FOOD, function (state, action) {
+	  return {
+	    food: _GlobalProvider2.default.foodSupply() };
+	}));
+
+	exports.default = resources;
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _actions = __webpack_require__(226);
+
+	var _reduxUtils = __webpack_require__(236);
+
+	var _reduxUtils2 = _interopRequireDefault(_reduxUtils);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var initialState = {
+	  updated: null
+	};
+
+	var sync = (0, _reduxUtils2.default)(initialState, _defineProperty({}, _actions.SYNC_UPDATE, function (state, action) {
+	  return {
+	    updated: action.time
+	  };
+	}));
+
+	exports.default = sync;
+
+/***/ },
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25446,7 +25583,7 @@
 
 	var _HeroesListContainer2 = _interopRequireDefault(_HeroesListContainer);
 
-	var _Modal = __webpack_require__(237);
+	var _Modal = __webpack_require__(241);
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
@@ -25473,7 +25610,7 @@
 	exports.default = HireHeroContainer;
 
 /***/ },
-/* 237 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25556,6 +25693,92 @@
 	}(_react.Component);
 
 	exports.default = Modal;
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(178);
+
+	var _ResourcesPanel = __webpack_require__(243);
+
+	var _ResourcesPanel2 = _interopRequireDefault(_ResourcesPanel);
+
+	var _GlobalProvider = __webpack_require__(219);
+
+	var _GlobalProvider2 = _interopRequireDefault(_GlobalProvider);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  return {
+	    food: _GlobalProvider2.default.foodSupply() };
+	};
+
+	var PanelContainer = (0, _reactRedux.connect)(mapStateToProps)(_ResourcesPanel2.default);
+
+	exports.default = PanelContainer;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ResourcesPanel = function (_Component) {
+	  _inherits(ResourcesPanel, _Component);
+
+	  function ResourcesPanel(props) {
+	    _classCallCheck(this, ResourcesPanel);
+
+	    return _possibleConstructorReturn(this, (ResourcesPanel.__proto__ || Object.getPrototypeOf(ResourcesPanel)).call(this, props));
+	  }
+
+	  _createClass(ResourcesPanel, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "resources-panel" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "resources-panel_food-section" },
+	          "FOOD:",
+	          this.props.food
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ResourcesPanel;
+	}(_react.Component);
+
+	exports.default = ResourcesPanel;
+	;
 
 /***/ }
 /******/ ]);
