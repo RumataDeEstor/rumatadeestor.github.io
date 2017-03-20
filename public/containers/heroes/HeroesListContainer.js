@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => ({
     provider.forceDayFinish();
     // dispatch(changeFood());
     dispatch(syncUpdate());
-    /* 
+    /*
       TODO: now I can use something like this, it must be automated later.
       Most likely, we should create separate sync for different domains (heroes, res, etc.)
       Or maybe not, we will see :)

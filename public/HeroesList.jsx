@@ -20,6 +20,7 @@ export default class HeroesList extends Component {
                 name={el.name}
                 hunger={el.hunger}
                 avatar={el.avatar}
+                payment={el.payment}
                 hireButtonIsNeeded={isListOfVacant}
                 hireHero={this.props.hireHero}
               />

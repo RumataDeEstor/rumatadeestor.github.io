@@ -16,13 +16,16 @@ export default class HeroItem extends Component {
   }
 
   render() {
-    const { name, id, hunger, avatar, hireButtonIsNeeded, hireHero } = this.props;
+    const { name, id, hunger, avatar, payment,
+      hireButtonIsNeeded, hireHero } = this.props;
 
     return (
       <div className="heroes-list__item">
         <img src={avatar} className="heroes-list__pic"/>
         <span> {name} </span>
         <span> {hunger} </span>
+        Payment:
+        <span> {payment} </span>
         { hireButtonIsNeeded ? <HireButton hireHero={() => hireHero(id)}/> : null}
       </div>
     );

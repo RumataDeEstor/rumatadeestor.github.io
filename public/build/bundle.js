@@ -23868,6 +23868,11 @@
 	      _GlobalProvider2.default.forceDayFinish();
 	      // dispatch(changeFood());
 	      dispatch((0, _actions4.syncUpdate)());
+	      /*
+	        TODO: now I can use something like this, it must be automated later.
+	        Most likely, we should create separate sync for different domains (heroes, res, etc.)
+	        Or maybe not, we will see :)
+	      */
 	    }
 	  };
 	};
@@ -23934,6 +23939,7 @@
 	            name: el.name,
 	            hunger: el.hunger,
 	            avatar: el.avatar,
+	            payment: el.payment,
 	            hireButtonIsNeeded: isListOfVacant,
 	            hireHero: _this2.props.hireHero
 	          });
@@ -24022,6 +24028,7 @@
 	          id = _props.id,
 	          hunger = _props.hunger,
 	          avatar = _props.avatar,
+	          payment = _props.payment,
 	          hireButtonIsNeeded = _props.hireButtonIsNeeded,
 	          _hireHero = _props.hireHero;
 
@@ -24042,6 +24049,14 @@
 	          null,
 	          " ",
 	          hunger,
+	          " "
+	        ),
+	        "Payment:",
+	        _react2.default.createElement(
+	          "span",
+	          null,
+	          " ",
+	          payment,
 	          " "
 	        ),
 	        hireButtonIsNeeded ? _react2.default.createElement(HireButton, { hireHero: function hireHero() {
@@ -24094,6 +24109,7 @@
 	    _classCallCheck(this, GlobalProvider);
 
 	    this._foodSupply = 1000;
+	    this._gold = 2000;
 	    this.heroes = {
 	      // all: [],
 	      // FIXME: think about mechanism of storing all heroes and need of this
@@ -24109,7 +24125,6 @@
 	        return (0, _helpers.listHelper)(this);
 	      }
 	    };
-	    this.foodSupply();
 	  }
 
 	  _createClass(GlobalProvider, [{
@@ -24118,6 +24133,12 @@
 	      if (dif) this._foodSupply += dif;
 	      // console.info(`%ccurrent foodSupply: ${this._foodSupply}`, 'font-size: 16px; color: blue');
 	      return this._foodSupply;
+	    }
+	  }, {
+	    key: 'gold',
+	    value: function gold(dif) {
+	      if (dif) this._gold += dif;
+	      return this._gold;
 	    }
 	  }, {
 	    key: 'findById',
@@ -24164,14 +24185,29 @@
 	      return _heroes2.default.avatars[(0, _helpers.getRandomInt)(0, _heroes2.default.avatars.length - 1)]; // either
 	    }
 	  }, {
+	    key: 'getRandomHunger',
+	    value: function getRandomHunger() {
+	      var min = 70;
+	      var max = 200; // FIXME: these values must be constants
+	      return (0, _helpers.getRandomInt)(min, max);
+	    }
+	  }, {
+	    key: 'getRandomPayment',
+	    value: function getRandomPayment() {
+	      var min = 100; // FIXME: these values must be constants
+	      var max = 300; // Probably will not be random
+	      return (0, _helpers.getRandomInt)(min, max);
+	    }
+	  }, {
 	    key: 'createPortionOfRandomHeroes',
 	    value: function createPortionOfRandomHeroes(number) {
 	      var start = 0;
 	      for (var i = start; i < number; i++) {
 	        this.createHero({
 	          name: this.getRandomName(),
-	          hunger: (0, _helpers.getRandomInt)(70, 200), // FIXME: these values must be constants
-	          avatar: this.getRandomAvatar()
+	          hunger: this.getRandomHunger(),
+	          avatar: this.getRandomAvatar(),
+	          payment: this.getRandomPayment()
 	        });
 	      }
 	    }
@@ -24282,12 +24318,14 @@
 	    var id = params.id,
 	        name = params.name,
 	        hunger = params.hunger,
-	        avatar = params.avatar;
+	        avatar = params.avatar,
+	        payment = params.payment;
 
 	    this.id = id;
 	    this.name = name;
 	    this.hunger = hunger;
 	    this.avatar = avatar;
+	    this.payment = payment;
 	  }
 
 	  _createClass(Hero, [{
@@ -25718,7 +25756,9 @@
 
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	  return {
-	    food: _GlobalProvider2.default.foodSupply() };
+	    food: _GlobalProvider2.default.foodSupply(), // FIXME: repeated
+	    gold: _GlobalProvider2.default.gold()
+	  };
 	};
 
 	var PanelContainer = (0, _reactRedux.connect)(mapStateToProps)(_ResourcesPanel2.default);

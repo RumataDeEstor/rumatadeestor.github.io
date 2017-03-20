@@ -5,6 +5,7 @@ import heroes from './heroes.json';
 class GlobalProvider {    // must be singleton
   constructor(params) {
     this._foodSupply = 1000;
+    this._gold = 2000;
     this.heroes = {
       // all: [],
       // FIXME: think about mechanism of storing all heroes and need of this
@@ -20,13 +21,17 @@ class GlobalProvider {    // must be singleton
         return listHelper(this);
       }
     };
-    this.foodSupply();
   }
 
   foodSupply(dif) {
     if (dif) this._foodSupply += dif;
     // console.info(`%ccurrent foodSupply: ${this._foodSupply}`, 'font-size: 16px; color: blue');
     return this._foodSupply;
+  }
+
+  gold(dif) {
+    if (dif) this._gold += dif;
+    return this._gold;
   }
 
   findById(query, id) {
@@ -64,13 +69,26 @@ class GlobalProvider {    // must be singleton
     return heroes.avatars[getRandomInt(0, heroes.avatars.length - 1)]; // either
   }
 
+  getRandomHunger() {
+    const min = 70;
+    const max = 200; // FIXME: these values must be constants
+    return getRandomInt(min, max);
+  }
+
+  getRandomPayment() {
+    const min = 100; // FIXME: these values must be constants
+    const max = 300; // Probably will not be random
+    return getRandomInt(min, max);
+  }
+
   createPortionOfRandomHeroes(number) {
     const start = 0;
     for (let i=start; i<number; i++) {
       this.createHero({
         name: this.getRandomName(),
-        hunger: getRandomInt(70, 200), // FIXME: these values must be constants
-        avatar: this.getRandomAvatar()
+        hunger: this.getRandomHunger(),
+        avatar: this.getRandomAvatar(),
+        payment: this.getRandomPayment(),
       });
     }
   }

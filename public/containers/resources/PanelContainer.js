@@ -5,6 +5,7 @@ import provider from '../../GlobalProvider';
 const mapStateToProps = (state, ownProps) => {
   return {
     food: provider.foodSupply(), // FIXME: repeated
+    gold: provider.gold(),
   }
 };
 

@@ -1,10 +1,11 @@
 export default class Hero {
   constructor(params) {
-    let { id, name, hunger, avatar } = params;
+    let { id, name, hunger, avatar, payment } = params;
     this.id = id;
     this.name = name;
     this.hunger = hunger;
     this.avatar = avatar;
+    this.payment = payment;
   }
 
   eating() {
